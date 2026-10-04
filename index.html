@@ -15,8 +15,8 @@
 <section class="panel"><h2>How to read this</h2><details open><summary>Owner salary versus investment profit</summary><p class="hint">Turning employees off removes their salary and employer contribution, but does not make your work free. Enter the full company cost of your own compensation to distinguish labour income from investment profit. Additional coverage starts at zero and must be budgeted separately.</p></details><details><summary>Cash, reserves and accounting</summary><p class="hint">This is a planning surplus with repair/replacement reserves. Reserves are not necessarily monthly accounting expenses. Depreciation is not calculated. Loan principal is shown as a cash payment, not a profit expense. Corporate tax applies here to a simplified positive surplus before reserves and loan principal; actual taxable profit also requires depreciation and tax adjustments.</p></details><details><summary>Hungarian tax regimes</summary><p class="hint">Standard employer contribution starts at 13%, matching our earlier model. If the company uses KIVA, do not stack standard employer tax and corporate tax on top. Set the employer percentage appropriately and enter a separate accountant-provided monthly tax allowance. Local business tax and tourism contribution cannot be determined simply from the final profit.</p></details><details><summary>What is excluded unless you enter it?</summary><p class="hint">Food sales and inventory, delivery-platform commissions, additional staffing, paid cleaners, owner compensation, music/terrace/signage fees, recruitment, legal costs, financing, personal dividend taxes, major refurbishment and unknown liabilities. Use additional overhead, coverage, upfront-capital and tax fields. There is no forecast of seasonality or annual growth.</p></details><details><summary>Public pricing context</summary><p class="hint">Bookkeeping and payroll are working budget inputs; get a café-specific quote. Card default is 80% card share at a 1.95% fee. See <a href="https://help.sumup.com/hu-HU/articles/4oI3qHHji2I2S9dyvRfec3-arak-es-dijszabas" target="_blank" rel="noopener">SumUp Hungary standard fees</a>, <a href="https://accountingguru.hu/araink" target="_blank" rel="noopener">bookkeeping price examples</a>, and <a href="https://taxsummaries.pwc.com/hungary/corporate/taxes-on-corporate-income" target="_blank" rel="noopener">Hungarian corporate-tax overview</a>. Rates and applicability must be checked.</p></details><p class="foot">Standalone, offline calculator. No tracking, accounts, network dependencies or data uploads. Reloading resets the values. Export CSV to retain your scenario. Prepared from the conversation's assumptions, October 2026.</p></section></aside></div></main>
 <script>
 const definitions=[
-['price','Average receipt per sale',1500,500,5000,50,'salesControls','Customer-facing amount, including any sales VAT.'],
-['sales','Sales per opening hour',4,0,30,.25,'salesControls','Average across busy and quiet hours; fractional averages are allowed.'],
+['price','Average receipt per sale',1450,500,5000,50,'salesControls','Customer-facing amount, including any sales VAT.'],
+['sales','Sales per opening hour',6,0,30,.25,'salesControls','Average across busy and quiet hours; fractional averages are allowed.'],
 ['hours','Opening hours per day',8,1,16,.5,'salesControls','Preparation and closing work are additional.'],
 ['days','Trading days per month',26,1,31,1,'salesControls','Annual totals assume the same average month × 12.'],
 ['purchase','Acquisition price',8000000,0,30000000,100000,'salesControls','Seller asking price: 8,000,000 HUF.'],
@@ -26,7 +26,7 @@ const definitions=[
 ['employer','Employer contribution %',13,0,40,.5,'staffControls','Standard-regime assumption; confirm actual regime.'],
 ['coverageCost','Extra staffing / absence cover',0,0,1000000,5000,'staffControls','Full employer cost, including additional contributions.'],
 ['ownerPay','Owner compensation: full company cost',0,0,1500000,10000,'staffControls','Use to price your own operational and management work.'],
-['premises','Premises bundle',230000,0,800000,5000,'overheadControls','Seller quoted 220,000–240,000 HUF. VAT basis unverified.'],
+['premises','Premises bundle',230000,0,800000,5000,'overheadControls','Rent, bills etc'],
 ['accounting','Bookkeeping',55000,0,150000,1000,'overheadControls','Budget input; annual accounts may be charged separately.'],
 ['payroll','Payroll administration',4500,0,50000,500,'overheadControls','Kept even if employees are switched off; manually adjust if no payroll is needed.'],
 ['cardShare','Card share of customer receipts %',80,0,100,5,'overheadControls','Card fees are calculated on VAT-inclusive payments.'],
@@ -39,13 +39,13 @@ const definitions=[
 ['insurance','Insurance',5000,0,50000,500,'overheadControls','Planning allowance.'],
 ['maintenance','Maintenance reserve',15000,0,100000,1000,'overheadControls','Budget reserve, not accounting depreciation.'],
 ['small','Small-equipment reserve',3000,0,50000,500,'overheadControls','Replacement allowance.'],
-['marketing','Marketing',10000,0,200000,1000,'overheadControls','Discretionary budget.'],
+['marketing','Marketing',40000,0,200000,1000,'overheadControls','Discretionary budget.'],
 ['compliance','Compliance + annual administration',5000,0,50000,500,'overheadControls','Avoid overlap with bookkeeping charges.'],
 ['contingency','Contingency reserve',5000,0,100000,1000,'overheadControls','Cash-planning allowance.'],
 ['other','Other recurring overheads',0,0,1000000,5000,'overheadControls','Cleaner, music, licences, professional advice, delivery fixed costs, etc.'],
 ['interest','Loan interest / month',0,0,500000,1000,'overheadControls','Financing expense.'],
 ['principal','Loan principal payment / month',0,0,500000,1000,'overheadControls','Cash payment, not an accounting expense.'],
-['vat','Effective sales VAT %',0,0,27,.1,'taxControls','0 means no sales VAT adjustment entered.'],
+['vat','Effective sales VAT %',27,0,27,.1,'taxControls','0 means no sales VAT adjustment entered.'],
 ['levy','Sales-linked levy allowance % of net revenue',0,0,10,.1,'taxControls','Planning approximation only; e.g. affected sales-related levies.'],
 ['taxFixed','Other business-tax allowance / month',0,0,200000,1000,'taxControls','Accountant-provided HIPA / KIVA / other tax budget. Avoid overlap with levy field.'],
 ['profitTax','Tax on positive modelled profit %',0,0,30,.5,'taxControls','0 by default; set only as a simplified approximation of the applicable regime.']
