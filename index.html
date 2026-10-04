@@ -22,7 +22,7 @@ const definitions=[
 ['purchase','Acquisition price',8000000,0,30000000,100000,'salesControls','Seller asking price: 8,000,000 HUF.'],
 ['upfront','Additional upfront capital',0,0,10000000,50000,'salesControls','Deposits, acquisition fees, stock, improvements and working-capital reserve.'],
 ['unitCost','Ingredients + packaging + waste per sale',250,0,1500,10,'productControls','Budget assumption; exclude recoverable input VAT. Increase if the higher receipt includes food.'],
-['salary','Total employee gross salary / month',450000,0,2000000,10000,'staffControls','Total gross salary across staff, not a verified wage quote.'],
+['salary','Total employee gross salary / month',680000,0,2000000,10000,'staffControls','Total gross salary across staff, not a verified wage quote.'],
 ['employer','Employer contribution %',13,0,40,.5,'staffControls','Standard-regime assumption; confirm actual regime.'],
 ['coverageCost','Extra staffing / absence cover',0,0,1000000,5000,'staffControls','Full employer cost, including additional contributions.'],
 ['ownerPay','Owner compensation: full company cost',0,0,1500000,10000,'staffControls','Use to price your own operational and management work.'],
@@ -47,8 +47,8 @@ const definitions=[
 ['principal','Loan principal payment / month',0,0,500000,1000,'overheadControls','Cash payment, not an accounting expense.'],
 ['vat','Effective sales VAT %',27,0,27,.1,'taxControls','0 means no sales VAT adjustment entered.'],
 ['levy','Sales-linked levy allowance % of net revenue',0,0,10,.1,'taxControls','Planning approximation only; e.g. affected sales-related levies.'],
-['taxFixed','Other business-tax allowance / month',0,0,200000,1000,'taxControls','Accountant-provided HIPA / KIVA / other tax budget. Avoid overlap with levy field.'],
-['profitTax','Tax on positive modelled profit %',0,0,30,.5,'taxControls','0 by default; set only as a simplified approximation of the applicable regime.']
+['taxFixed','Other business-tax allowance / month',45000,0,200000,1000,'taxControls','Accountant-provided HIPA / KIVA / other tax budget. Avoid overlap with levy field.'],
+['profitTax','Tax on positive modelled profit %',9,0,30,.5,'taxControls','0 by default; set only as a simplified approximation of the applicable regime.']
 ];
 const state={};const fmt=n=>Math.round(n).toLocaleString('en-GB');const money=n=>fmt(n)+' HUF';
 for(const [id,label,value,min,max,step,group,hint] of definitions){state[id]=value;const el=document.createElement('div');el.className='control';el.innerHTML=`<div class="control-head"><label for="${id}Range">${label}</label><input type="number" id="${id}Num" min="${min}" max="${max}" step="${step}" value="${value}" aria-label="${label}"></div><input type="range" id="${id}Range" min="${min}" max="${max}" step="${step}" value="${value}"><div class="hint">${hint}</div>`;document.getElementById(group).appendChild(el);for(const suffix of ['Num','Range'])document.getElementById(id+suffix).addEventListener('input',e=>{if(e.target.value==='')return;const n=Number(e.target.value);if(!Number.isFinite(n))return;state[id]=Math.max(min,Math.min(max,n));document.getElementById(id+(suffix==='Num'?'Range':'Num')).value=state[id];if(id==='vat')document.getElementById('vatPreset').value=[0,5,27].includes(state.vat)?String(state.vat):'custom';render();});}
